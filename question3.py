@@ -1,14 +1,27 @@
 '''3)BINARY SEARCH'''
 print("program to search a number in a list using binary search")
-a=input("enter the numbers of the list separated by commas:")
-n=int(input("enter the number to be searched"))
-l=a.split(',')
-count=0
-for i in l:
-        if int(i)==n:
-          print("number found")
-          print("the position of the number is:",l.index(i))
-          count=1
-if count==0:
-   print("the number is not found") 
+def binary_search(alist, key):
+    """Search key in alist[start... end - 1]."""
+    start = 0
+    end = len(alist)
+    while start < end:
+        mid = (start + end)//2
+        if alist[mid] > key:
+            end = mid
+        elif alist[mid] < key:
+            start = mid + 1
+        else:
+            return mid
+    return -1
+ 
+alist = input('Enter the sorted list of numbers separated by comma: ')
+alist = alist.split(',')
+alist = [int(x) for x in alist]
+key = int(input('The number to search for: '))
+ 
+index = binary_search(alist, key)
+if index < 0:
+    print('{} was not found.'.format(key))
+else:
+    print('{} was found at index {}.'.format(key, index))
 input("press enter to exit:")
